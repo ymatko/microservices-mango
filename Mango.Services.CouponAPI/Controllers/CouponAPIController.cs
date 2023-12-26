@@ -3,6 +3,7 @@ using Mango.Services.CouponAPI.Data;
 using Mango.Services.CouponAPI.Models;
 using Mango.Services.CouponAPI.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace Mango.Services.CouponAPI.Controllers
 {
@@ -19,8 +20,8 @@ namespace Mango.Services.CouponAPI.Controllers
             _mapper = mapper;
             _response = new ResponseDto();
         }
-
         [HttpGet]
+        [Tags("Getters")]
         public ResponseDto Get()
         {
             try
@@ -36,6 +37,7 @@ namespace Mango.Services.CouponAPI.Controllers
             return _response;
         }
         [HttpGet]
+        [Tags("Getters")]
         [Route("{id:int}")]
         public ResponseDto Get(int id)
         {
@@ -52,6 +54,7 @@ namespace Mango.Services.CouponAPI.Controllers
             return _response;
         }
         [HttpGet]
+        [Tags("Getters")]
         [Route("GetByCode{code}")]
         public ResponseDto GetByCode(string code)
         {
@@ -68,6 +71,7 @@ namespace Mango.Services.CouponAPI.Controllers
             return _response;
         }
         [HttpPost]
+        [Tags("Creators")]
         public ResponseDto Post([FromBody] CouponDto couponDto)
         {
             try
@@ -85,6 +89,7 @@ namespace Mango.Services.CouponAPI.Controllers
             return _response;
         }
         [HttpPut]
+        [Tags("Updaters")]
         public ResponseDto Put([FromBody] CouponDto couponDto)
         {
             try
@@ -102,6 +107,7 @@ namespace Mango.Services.CouponAPI.Controllers
             return _response;
         }
         [HttpDelete]
+        [Tags("Deleters")]
         public ResponseDto Delete(int id)
         {
             try
