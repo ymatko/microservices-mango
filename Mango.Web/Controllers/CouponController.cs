@@ -15,7 +15,7 @@ namespace Mango.Web.Controllers
         public async Task<IActionResult> CouponIndex()
         {
             List<CouponDto?> list = new();
-            ResponseDto? response = await _couponService.GetAllCouponAsync();
+            ResponseDto? response = await _couponService.GetAllCouponsAsync();
             if (response != null && response.IsSuccess)
             {
                 list = JsonConvert.DeserializeObject<List<CouponDto>>(Convert.ToString(response.Result));

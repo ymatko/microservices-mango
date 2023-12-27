@@ -31,7 +31,7 @@ namespace Mango.Web.Service
             });
         }
 
-        public async Task<ResponseDto?> GetAllCouponAsync()
+        public async Task<ResponseDto?> GetAllCouponsAsync()
         {
             return await _baseService.SendAsync(new RequestDto()
             {
