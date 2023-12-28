@@ -107,6 +107,7 @@ namespace Mango.Services.CouponAPI.Controllers
             return _response;
         }
         [HttpDelete]
+        [Route("{id:int}")]
         [Tags("Deleters")]
         public ResponseDto Delete(int id)
         {
