@@ -6,6 +6,6 @@ namespace Mango.Web.Service.IService
     {
         Task<ResponseDto?> LoginAsync(LoginRequestDto loginRequestDto);
         Task<ResponseDto?> RegisterAsync(RegisterationRequestDto registerationRequestDto);
-        Task<ResponseDto?> AssignAsync(RegisterationRequestDto registerationRequestDto);
+        Task<ResponseDto?> AssignRoleAsync(RegisterationRequestDto registerationRequestDto);
     }
 }

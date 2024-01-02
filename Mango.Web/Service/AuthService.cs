@@ -11,7 +11,7 @@ namespace Mango.Web.Service
         {
             _baseService = baseService;
         }
-        public async Task<ResponseDto?> AssignAsync(RegisterationRequestDto registerationRequestDto)
+        public async Task<ResponseDto?> AssignRoleAsync(RegisterationRequestDto registerationRequestDto)
         {
             return await _baseService.SendAsync(new RequestDto()
             {
