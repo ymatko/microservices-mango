@@ -72,5 +72,59 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             return _response;
         }
+        [HttpPost]
+        [Tags("Creators")]
+        public ResponseDto Post([FromBody] ProductDto product)
+        {
+            try
+            {
+                Product obj = _mapper.Map<Product>(product);
+                _db.Products.Add(obj);
+                _db.SaveChanges();
+                _response.Result = _mapper.Map<ProductDto>(obj);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+        [HttpPut]
+        [Tags("Updaters")]
+        public ResponseDto Put([FromBody] ProductDto product)
+        {
+            try
+            {
+                Product obj = _mapper.Map<Product>(product);
+                _db.Products.Update(obj);
+                _db.SaveChanges();
+                _response.Result = _mapper.Map<ProductDto>(obj);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+        [HttpDelete ]
+        [Route("{id:int}")]
+        [Tags("Deleters")]
+        public ResponseDto Delete(int id)
+        {
+            try
+            {
+                Product obj = _db.Products.First(o => o.ProductId == id);
+                _db.Products.Remove(obj);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
     }
 }
