@@ -25,7 +25,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
             _mapper = mapper;
             _response = new ResponseDto();
         }
-        [HttpPost("GetCart/{userId}")]
+        [HttpGet("GetCart/{userId}")]
         public async Task<ResponseDto> GetCart(string userId)
         {
             try
@@ -36,7 +36,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
                 };
                 cart.CartDetails = _mapper.Map<IEnumerable<CartDetailsDto>>(_db.CartDetails
                     .Where(u => u.CartHeaderId == cart.CartHeader.CartHeaderId));
-                IEnumerable<ProductDto> productDtos = await _productService.GetProduct();
+                IEnumerable<ProductDto> productDtos = await _productService.GetProducts();
                 foreach(var item in cart.CartDetails)
                 {
                     item.Product = productDtos.FirstOrDefault(u => u.ProductId == item.ProductId);

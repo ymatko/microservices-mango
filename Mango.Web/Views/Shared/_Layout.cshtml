@@ -34,6 +34,11 @@
                                 <a class="dropdown-item" asp-controller="Product" asp-action="ProductIndex">Product</a>
                             </div>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="CartIndex">
+                                &nbsp; <i class="bi bi-cart"></i>&nbsp;
+                            </a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav">
                         @if (!User.Identity.IsAuthenticated)

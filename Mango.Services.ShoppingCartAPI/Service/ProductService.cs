@@ -13,7 +13,7 @@ namespace Mango.Services.ShoppingCartAPI.Service
         {
             _clientFactory = clientFactory;
         }
-        public async Task<IEnumerable<ProductDto>> GetProduct()
+        public async Task<IEnumerable<ProductDto>> GetProducts()
         {
             var client = _clientFactory.CreateClient("Product");
             var response = await client.GetAsync($"/api/product");

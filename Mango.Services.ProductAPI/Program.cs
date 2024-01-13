@@ -25,13 +25,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
 {
-    option.AddSecurityDefinition(name: JwtBearerDefaults.AuthenticationScheme, securityScheme: new OpenApiSecurityScheme
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+
     {
-        Name = "Authorization",
-        Description = "Enter the Bearer Autorization string as following: `Bearer Generated-JWT-Token`",
+
+        Description = @"Enter bearer token",
+
+        Name = "Auth",
+
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
+
+        Type = SecuritySchemeType.Http,
+
+        BearerFormat = "JWT",
+
         Scheme = "Bearer"
+
     });
     option.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
