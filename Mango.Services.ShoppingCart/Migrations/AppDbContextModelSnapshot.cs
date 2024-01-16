@@ -42,7 +42,7 @@ namespace Mango.Services.ShoppingCartAPI.Migrations
 
                     b.HasIndex("CartHeaderId");
 
-                    b.ToTable("CartDetails");
+                    b.ToTable("CartDetails", (string)null);
                 });
 
             modelBuilder.Entity("Mango.Services.ShoppingCartAPI.Models.CartHeader", b =>
@@ -61,7 +61,7 @@ namespace Mango.Services.ShoppingCartAPI.Migrations
 
                     b.HasKey("CartHeaderId");
 
-                    b.ToTable("CartHeaders");
+                    b.ToTable("CartHeaders", (string)null);
                 });
 
             modelBuilder.Entity("Mango.Services.ShoppingCartAPI.Models.CarDetails", b =>
