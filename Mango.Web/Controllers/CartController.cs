@@ -17,14 +17,14 @@ namespace Mango.Web.Controllers
         [Authorize]
         public async Task<IActionResult> CartIndex()
         {
-            return View(await LoadCartdtoBasedOnLoggedInUser());
+            return View(await LoadCartDtoBasedOnLoggedInUser());
         }
 
-        private async Task<CartDto> LoadCartdtoBasedOnLoggedInUser()
+        private async Task<CartDto> LoadCartDtoBasedOnLoggedInUser()
         {
             var userId = User.Claims.Where(u => u.Type == JwtRegisteredClaimNames.Sub)?.FirstOrDefault()?.Value;
             ResponseDto? response = await _cartService.GetCartByUserIdAsync(userId);
-            if(response != null && response.IsSuccess)
+            if(response != null & response.IsSuccess)
             {
                 CartDto cartDto = JsonConvert.DeserializeObject<CartDto>(Convert.ToString(response.Result));
                 return cartDto;

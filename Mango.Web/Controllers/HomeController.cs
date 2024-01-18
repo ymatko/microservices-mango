@@ -33,7 +33,7 @@ namespace Mango.Web.Controllers
             }
             return View(list);
         }
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> ProductDetails(int productId)
         {
             ProductDto? model = new();
@@ -48,7 +48,7 @@ namespace Mango.Web.Controllers
             }
             return View(model);
         }
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [ActionName("ProductDetails")]
         public async Task<IActionResult> ProductDetails(ProductDto productDto)
