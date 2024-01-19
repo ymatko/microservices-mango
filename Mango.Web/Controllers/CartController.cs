@@ -30,6 +30,17 @@ namespace Mango.Web.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> ApplyCoupon(CartDto cartDto)
+        {
+            ResponseDto? response = await _cartService.ApplyCouponAsync(cartDto);
+            if (response != null & response.IsSuccess)
+            {
+                TempData["success"] = "Cart updated successfully";
+                return RedirectToAction(nameof(CartIndex));
+            }
+            return View();
+        }
 
         private async Task<CartDto> LoadCartDtoBasedOnLoggedInUser()
         {
