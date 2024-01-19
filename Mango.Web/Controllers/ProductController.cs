@@ -1,10 +1,12 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Service.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace Mango.Web.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -31,6 +33,7 @@ namespace Mango.Web.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> ProductCreate(ProductDto model)
         {
             if (ModelState.IsValid)
@@ -59,6 +62,7 @@ namespace Mango.Web.Controllers
             return NotFound();
         }
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> ProductDelete(ProductDto productDto)
         {
             ResponseDto? response = await _productService.DeleteProductsAsync(productDto.ProductId);
@@ -84,6 +88,7 @@ namespace Mango.Web.Controllers
             return NotFound();
         }
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> ProductEdit(ProductDto productDto)
         {
             ResponseDto? response = await _productService.UpdateProductsAsync(productDto);
