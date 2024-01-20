@@ -73,8 +73,11 @@
                         }
                     </div>
                     <div class="col-6 text-end">
-                        <span class="text-danger" style="font-size:21px;">  Order Total : $$ <br /></span>
-                        <span class="text-success"> Order Discount :  $$</span>
+                        <span class="text-danger" style="font-size:21px;">  Order Total : @string.Format("{0:c}", Model.CartHeader.CartTotal) <br /></span>
+                        @if(Model.CartHeader.Discount > 0)
+                        {
+                            <span class="text-success"> Order Discount :  @string.Format("{0:c}", Model.CartHeader.Discount)</span>
+                        }
                     </div>
                 </div>
             </div>
@@ -83,7 +86,7 @@
                     <button type="submit" class="btn btn-outline-danger form-control">Email Cart</button>
                 </div>
                 <div class="col-6 col-md-3 offset-md-6">
-                    <button disabled class="btn btn-success form-control " value="Checkout (Comming Soon!)" />
+                    <button disabled class="btn btn-success form-control"/>Checkout (Comming Soon!)</button>
                 </div>
             </div>
         </div>
