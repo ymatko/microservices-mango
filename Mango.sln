@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Services.ProductAPI",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Services.ShoppingCartAPI", "Mango.Services.ShoppingCart\Mango.Services.ShoppingCartAPI.csproj", "{5BF8E8D1-B9E3-4AC0-BB8F-5B58B63F70AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.MessageBus", "Mango.MessageBus\Mango.MessageBus.csproj", "{79B165ED-17FA-4210-94D3-7D3BD8D5F001}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.MessageBus", "Mango.MessageBus\Mango.MessageBus.csproj", "{79B165ED-17FA-4210-94D3-7D3BD8D5F001}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.EmailAPI", "Mango.Services.EmailAPI\Mango.Services.EmailAPI.csproj", "{039F1751-8ADA-4BE6-A18F-4060DD2EEE1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{79B165ED-17FA-4210-94D3-7D3BD8D5F001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79B165ED-17FA-4210-94D3-7D3BD8D5F001}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79B165ED-17FA-4210-94D3-7D3BD8D5F001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{039F1751-8ADA-4BE6-A18F-4060DD2EEE1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039F1751-8ADA-4BE6-A18F-4060DD2EEE1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039F1751-8ADA-4BE6-A18F-4060DD2EEE1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039F1751-8ADA-4BE6-A18F-4060DD2EEE1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{43CCD05B-9008-41D6-9B2A-97B70500D7CA} = {6B2337EC-8A01-4CDB-B381-A62A72FAE3B7}
 		{5BF8E8D1-B9E3-4AC0-BB8F-5B58B63F70AF} = {6B2337EC-8A01-4CDB-B381-A62A72FAE3B7}
 		{79B165ED-17FA-4210-94D3-7D3BD8D5F001} = {85F1DF97-DA73-4455-A1F0-5CF393358036}
+		{039F1751-8ADA-4BE6-A18F-4060DD2EEE1C} = {6B2337EC-8A01-4CDB-B381-A62A72FAE3B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AA81999-C93A-4AFC-B0C6-AA5AB23EC613}
