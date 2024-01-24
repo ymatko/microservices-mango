@@ -364,3 +364,9 @@ FodyWeavers.xsd
 
 #AzureBusService
 Mango.MessageBus/MessageBus.cs
+
+#Appsettings
+Mango.Services.EmailAPI/appsettings.json
+/Mango.Services.ShoppingCart/appsettings.json
+/Mango.Services.EmailAPI/appsettings.json
+/Mango.Services.EmailAPI/appsettings.json
