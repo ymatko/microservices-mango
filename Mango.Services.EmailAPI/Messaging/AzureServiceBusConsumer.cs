@@ -11,7 +11,7 @@ namespace Mango.Services.EmailAPI.Messaging
         private readonly string emailCartQueue;
         private readonly IConfiguration _configuration;
 
-        private ServiceBusProcessor _emailBusProcessor;
+        private ServiceBusProcessor _emailCartProcessor;
         public AzureServiceBusConsumer(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -21,18 +21,19 @@ namespace Mango.Services.EmailAPI.Messaging
             emailCartQueue = _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCartQueue");
 
             var client = new ServiceBusClient(serviceBuConnectionString);
-            _emailBusProcessor = client.CreateProcessor(emailCartQueue);
+            _emailCartProcessor = client.CreateProcessor(emailCartQueue);
         }
 
         public async Task Start()
         {
-            _emailBusProcessor.ProcessMessageAsync += OnEmailCartRequestReceived;
-            _emailBusProcessor.ProcessErrorAsync += ErrorHandler;
+            _emailCartProcessor.ProcessMessageAsync += OnEmailCartRequestReceived;
+            _emailCartProcessor.ProcessErrorAsync += ErrorHandler;
+            await _emailCartProcessor.StartProcessingAsync();
         }
         public async Task Stop()
         {
-            await _emailBusProcessor.StopProcessingAsync();
-            await _emailBusProcessor.DisposeAsync();
+            await _emailCartProcessor.StopProcessingAsync();
+            await _emailCartProcessor.DisposeAsync();
         }
         private async Task OnEmailCartRequestReceived(ProcessMessageEventArgs args)
         {
