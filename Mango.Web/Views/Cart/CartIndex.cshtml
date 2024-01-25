@@ -8,17 +8,17 @@
         <input asp-for="CartHeader.CartHeaderId" hidden />
         <div class="">
             <div class="card border mt-4 container">
-                <div class="card-header bg-primary text-light ml-0 row ">
+                <div class="card-header bg-light text-light ml-0 row ">
                     <div class="col-6">
-                        <h3 class="text-success"><i class="bi bi-cart"></i> &nbsp; Shopping Cart</h3>
+                        <h3 class="text-dark"><i class="bi bi-cart"></i> &nbsp; Shopping Cart</h3>
                     </div>
                     <div class="col-6 text-end">
-                        <a class="btn btn-outline-dark mt-2 btn-sm">Continue Shopping</a>
+                        <a class="btn btn-outline-primary mt-2 btn-sm">Continue Shopping</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class=" d-none d-lg-block">
-                        <div class="row text-info">
+                        <div class="row text-dark">
                             <div class="col-lg-2">
                             </div>
                             <div class="col-lg-5">
@@ -88,7 +88,7 @@
                         <button type="submit" class="btn btn-outline-danger form-control">Email Cart</button>
                     </div>
                     <div class="col-6 col-md-3 offset-md-6">
-                        <button disabled class="btn btn-success form-control">Checkout (Comming Soon!)</button>
+                        <a asp-action="Checkout" class="btn btn-success form-control">Looks Good?</a>
                     </div>
                 </div>
             </div>
