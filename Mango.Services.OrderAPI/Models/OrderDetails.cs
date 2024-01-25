@@ -1,4 +1,4 @@
-﻿using Mango.Service.OrderAPI.Models.Dto;
+﻿using Mango.Services.OrderAPI.Models.Dto;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
