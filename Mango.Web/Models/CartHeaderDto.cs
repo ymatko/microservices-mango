@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Mango.Web.Models
 {
@@ -10,9 +9,11 @@ namespace Mango.Web.Models
         public string? CouponCode { get; set; }
         public double Discount { get; set; }
         public double CartTotal { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
+        [Required]
+        public string? Name { get; set; }
+        [Required]
         public string? Phone { get; set; }
+        [Required]
         public string? Email { get; set; }
     }
 }
