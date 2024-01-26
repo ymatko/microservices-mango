@@ -371,3 +371,6 @@ Mango.Services.EmailAPI/appsettings.json
 /Mango.Services.EmailAPI/appsettings.json
 /Mango.Services.EmailAPI/appsettings.json
 /Mango.Services.OrderAPI/appsettings.json
+/Mango.Services.CouponAPI/appsettings.json
+/.gitignore
+/Mango.Services.CouponAPI/appsettings.json
