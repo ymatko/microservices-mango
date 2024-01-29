@@ -1,4 +1,5 @@
 using Mango.Services.RewardAPI.Data;
+using Mango.Services.RewardAPI.Extension;
 using Mango.Services.RewardAPI.Messaging;
 using Mango.Services.RewardAPI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -39,7 +40,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 ApplyMigration();
-
+app.UseAzureServiceBusConsumer();
 app.Run();
 
 
