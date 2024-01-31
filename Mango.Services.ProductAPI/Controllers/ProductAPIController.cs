@@ -15,11 +15,13 @@ namespace Mango.Services.ProductAPI.Controllers
         private readonly AppDbContext _db;
         private readonly IMapper _mapper;
         private readonly ResponseDto _response;
+        private readonly ILogger<ProductAPIController> _logger;
 
-        public ProductAPIController(AppDbContext db, IMapper mapper)
+        public ProductAPIController(AppDbContext db, IMapper mapper, ILogger<ProductAPIController> logger)
         {
             _db = db;
             _mapper = mapper;
+            _logger = logger;
             _response = new ResponseDto();
         }
         [HttpGet]
@@ -33,6 +35,7 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Product.Get " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -50,6 +53,7 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Product.GetById " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -69,6 +73,7 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Product.Post " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -88,6 +93,7 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Product.Put " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -107,6 +113,7 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Product.Delete " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
