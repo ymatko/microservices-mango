@@ -24,7 +24,9 @@ namespace Mango.Services.OrderAPI.Controllers
         private IProductService _productService;
         private readonly IMessageBus _messageBus;
         private IConfiguration _configuration;
-        public OrderAPIController(IMapper mapper, AppDbContext db, IProductService productService, IConfiguration configuration, IMessageBus messageBus)
+        private readonly ILogger<OrderAPIController> _logger;
+        public OrderAPIController(IMapper mapper, AppDbContext db, IProductService productService, 
+            IConfiguration configuration, IMessageBus messageBus, ILogger<OrderAPIController> logger)
         {
             _db = db;
             _mapper = mapper;
@@ -32,6 +34,7 @@ namespace Mango.Services.OrderAPI.Controllers
             _response = new ResponseDto();
             _configuration = configuration;
             _messageBus = messageBus;
+            _logger = logger;
         }
 
         [Authorize]
@@ -53,6 +56,7 @@ namespace Mango.Services.OrderAPI.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError("Error in Order.Get " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -70,6 +74,7 @@ namespace Mango.Services.OrderAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Order.GetById " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -96,6 +101,7 @@ namespace Mango.Services.OrderAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Order.CreateOrder " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -155,6 +161,7 @@ namespace Mango.Services.OrderAPI.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError("Error in Order.CreateStripeSession " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -191,6 +198,8 @@ namespace Mango.Services.OrderAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Order.ValidateStripeSession " + ex.Message);
+
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -224,6 +233,8 @@ namespace Mango.Services.OrderAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Order.UpdateOrderStatus " + ex.Message);
+
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
