@@ -17,10 +17,12 @@ namespace Mango.Services.CouponAPI.Controllers
         private readonly AppDbContext _db;
         private ResponseDto _response;
         private IMapper _mapper;
-        public CouponAPIController(AppDbContext db, IMapper mapper)
+        private readonly ILogger<CouponAPIController> _logger;
+        public CouponAPIController(AppDbContext db, IMapper mapper, ILogger<CouponAPIController> logger)
         {
             _db = db;
             _mapper = mapper;
+            _logger = logger;
             _response = new ResponseDto();
         }
         [HttpGet]
@@ -34,6 +36,7 @@ namespace Mango.Services.CouponAPI.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError("Error in CouponAPI.Get " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -51,6 +54,7 @@ namespace Mango.Services.CouponAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in CouponAPI.GetById " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -68,6 +72,7 @@ namespace Mango.Services.CouponAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in CouponAPI.GetByCode " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -97,6 +102,7 @@ namespace Mango.Services.CouponAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in CouponAPI.Post " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -116,6 +122,7 @@ namespace Mango.Services.CouponAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in CouponAPI.Put " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -137,6 +144,7 @@ namespace Mango.Services.CouponAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in CouponAPI.Delete " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }

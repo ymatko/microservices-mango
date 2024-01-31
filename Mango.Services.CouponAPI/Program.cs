@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NLog.Extensions.Logging;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,6 +54,12 @@ builder.Services.AddSwaggerGen(option =>
 builder.AddAppAuthentication();
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddLogging(logging =>
+{
+    logging.ClearProviders();
+    logging.AddNLog("nlog.config");
+});
 
 var app = builder.Build();
 
