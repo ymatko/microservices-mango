@@ -9,6 +9,7 @@ using Mango.Services.ShoppingCartAPI.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using NLog.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,6 +71,12 @@ builder.Services.AddSwaggerGen(option =>
 builder.AddAppAuthentication();
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddLogging(logging =>
+{
+    logging.ClearProviders();
+    logging.AddNLog("nlog.config");
+});
 
 var app = builder.Build();
 

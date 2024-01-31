@@ -21,8 +21,9 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
         private ICouponService _couponService;
         private readonly IMessageBus _messageBus;
         private IConfiguration _configuration;
-        public CartAPIController(AppDbContext db, IMapper mapper, IProductService productService, 
-            ICouponService couponService, IMessageBus messageBus, IConfiguration configuration)
+        private readonly ILogger<CartAPIController> _logger;
+        public CartAPIController(AppDbContext db, IMapper mapper, IProductService productService, ICouponService couponService, 
+            IMessageBus messageBus, IConfiguration configuration, ILogger<CartAPIController> logger)
         {
             _db = db;
             _mapper = mapper;
@@ -31,6 +32,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
             _couponService = couponService;
             _messageBus = messageBus;
             _configuration = configuration;
+            _logger = logger;
         }
         [HttpGet("GetCart/{userId}")]
         public async Task<ResponseDto> GetCart(string userId)
@@ -63,6 +65,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError("Error in Cart.GetByUserId " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -82,6 +85,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError("Error in Cart.ApplyCoupon " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -97,6 +101,8 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Cart.EmailCartRequest " + ex.Message);
+
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -117,6 +123,8 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Cart.RemoveCoupon " + ex.Message);
+
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -131,6 +139,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
                 var cartHeaderFromDb = await _db.CartHeaders.AsNoTracking().FirstOrDefaultAsync(u=>u.UserId == cartDto.CartHeader.UserId);
                 if(cartHeaderFromDb == null)
                 {
+                    _logger.LogInformation($"Created new Cart for User {cartDto.CartHeader.UserId}");
                     CartHeader cartHeader = _mapper.Map<CartHeader>(cartDto.CartHeader);
                     _db.CartHeaders.Add(cartHeader);
                     _db.SaveChanges();
@@ -162,6 +171,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError("Error in Cart.CartUpsert " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -184,11 +194,12 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
                     _db.CartHeaders.Remove(cartHeaderToRemove);
                 }
                 await _db.SaveChangesAsync();
-
+                _logger.LogInformation($"Removed Cart with Id {cartDetailsId}");
                 _response.Result = true;
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in Cart.RemoveCart " + ex.Message);
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
