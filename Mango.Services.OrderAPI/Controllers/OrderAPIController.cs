@@ -64,7 +64,7 @@ namespace Mango.Services.OrderAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("GetOrders/{id:int}")]
+        [HttpGet("GetOrder/{id:int}")]
         public ResponseDto? Get(int id)
         {
             try
@@ -234,7 +234,6 @@ namespace Mango.Services.OrderAPI.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Error in Order.UpdateOrderStatus " + ex.Message);
-
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
