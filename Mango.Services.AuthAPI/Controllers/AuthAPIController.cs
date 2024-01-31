@@ -15,51 +15,83 @@ namespace Mango.Services.AuthAPI.Controllers
         private readonly IMessageBus _messageBus;
         private readonly IConfiguration _configuration;
         protected ResponseDto _response;
-        public AuthAPIController(IAuthService authService, IMessageBus messageBus, IConfiguration configuration)
+        private readonly ILogger<AuthAPIController> _logger;
+        public AuthAPIController(IAuthService authService, IMessageBus messageBus, IConfiguration configuration, ILogger<AuthAPIController> logger)
         {
             _authService = authService;
             _messageBus = messageBus;
             _configuration = configuration;
+            _logger = logger;
             _response = new();
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterationRequestDto model)
         {
-            var errorMessage = await _authService.Register(model);
-            if (!string.IsNullOrEmpty(errorMessage))
+            try
             {
+                var errorMessage = await _authService.Register(model);
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    _response.IsSuccess = false;
+                    _response.Message = errorMessage;
+                    return BadRequest(_response);
+                }
+                await _messageBus.PublishMessage(model.Email, _configuration.GetValue<string>("TopicAndQueueNames:RegisterUsertQueue"));
+                return Ok(_response);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Error in Register " + ex.Message);
                 _response.IsSuccess = false;
-                _response.Message = errorMessage;
+                _response.Message = ex.Message;
                 return BadRequest(_response);
             }
-            await _messageBus.PublishMessage(model.Email, _configuration.GetValue<string>("TopicAndQueueNames:RegisterUsertQueue"));
-            return Ok(_response);
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {
-            var loginResponse = await _authService.Login(model);
-            if(loginResponse.User == null)
+            try
             {
+                var loginResponse = await _authService.Login(model);
+                if (loginResponse.User == null)
+                {
+                    _response.IsSuccess = false;
+                    _response.Message = "Username or password is incorrect";
+                    return BadRequest(_response);
+                }
+                _response.Result = loginResponse;
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error in Login " + ex.Message);
                 _response.IsSuccess = false;
-                _response.Message = "Username or password is incorrect";
+                _response.Message = ex.Message;
                 return BadRequest(_response);
             }
-            _response.Result = loginResponse;
-            return Ok(_response);
         }
         [HttpPost("AssignRole")]
         public async Task<IActionResult> AssignRole([FromBody] RegisterationRequestDto model)
         {
-            var assignRoleSuccessful = await _authService.AssignRole(model.Email, model.Role.ToUpper());
-            if (!assignRoleSuccessful)
+            try
             {
+                var assignRoleSuccessful = await _authService.AssignRole(model.Email, model.Role.ToUpper());
+                if (!assignRoleSuccessful)
+                {
+                    _response.IsSuccess = false;
+                    _response.Message = "Error encountered";
+                    return BadRequest(_response);
+                }
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error in AssignRole " + ex.Message);
                 _response.IsSuccess = false;
-                _response.Message = "Error encountered";
+                _response.Message = ex.Message;
                 return BadRequest(_response);
             }
-            return Ok(_response);
         }
     }
 }
