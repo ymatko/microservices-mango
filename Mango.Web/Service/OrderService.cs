@@ -32,7 +32,7 @@ namespace Mango.Web.Service
             });
         }
 
-        public async Task<ResponseDto?> GetAllOrders(string? userId)
+        public async Task<ResponseDto?> GetAllOrder(string? userId)
         {
             return await _baseService.SendAsync(new RequestDto()
             {
