@@ -29,4 +29,8 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\ProductImages\" />
+  </ItemGroup>
 </Project>
