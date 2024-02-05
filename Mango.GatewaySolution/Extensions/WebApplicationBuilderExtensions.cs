@@ -10,9 +10,9 @@ namespace Mango.GetewaySolution.Extensions
         {
             var settingsSection = builder.Configuration.GetSection("ApiSettings");
 
-            var secret = builder.Configuration.GetValue<string>("Secret");
-            var issuer = builder.Configuration.GetValue<string>("Issuer");
-            var audience = builder.Configuration.GetValue<string>("Audience");
+            var secret = settingsSection.GetValue<string>("Secret");
+            var issuer = settingsSection.GetValue<string>("Issuer");
+            var audience = settingsSection.GetValue<string>("Audience");
 
             var key = Encoding.ASCII.GetBytes(secret);
 
