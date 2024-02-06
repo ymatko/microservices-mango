@@ -1,4 +1,4 @@
-using Mango.GetewaySolution.Extensions;
+using Mango.GatewaySolution.Extensions;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
