@@ -375,3 +375,16 @@ Mango.Services.EmailAPI/appsettings.json
 /.gitignore
 /Mango.Services.CouponAPI/appsettings.json
 /Mango.Services.ProductAPI/wwwroot/ProductImages
+/Mango.Services.AuthAPI/appsettings.Production.json
+/Mango.Services.CouponAPI/appsettings.Production.json
+/Mango.Services.EmailAPI/appsettings.Production.json
+/Mango.Services.OrderAPI/appsettings.Production.json
+/Mango.Services.ProductAPI/appsettings.Production.json
+/Mango.Services.RewardAPI/appsettings.Production.json
+/Mango.Services.RewardAPI/appsettings.json
+/Mango.Services.ProductAPI/appsettings.json
+/Mango.Services.ShoppingCart/appsettings.json
+/Mango.Services.ShoppingCart/appsettings.Production.json
+/Mango.Services.AuthAPI/appsettings.json
+/Mango.GatewaySolution/appsettings.json
+/Mango.Web/appsettings.json
