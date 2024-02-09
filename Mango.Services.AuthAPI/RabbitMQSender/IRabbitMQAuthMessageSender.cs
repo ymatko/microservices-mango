@@ -2,6 +2,6 @@
 {
     public interface IRabbitMQAuthMessageSender
     {
-        void SendMessaga(Object message, string queueName);
+        void SendMessage(Object message, string queueName);
     }
 }
