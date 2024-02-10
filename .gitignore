@@ -388,3 +388,4 @@ Mango.Services.EmailAPI/appsettings.json
 /Mango.Services.AuthAPI/appsettings.json
 /Mango.GatewaySolution/appsettings.json
 /Mango.Web/appsettings.json
+/Mango.GatewaySolution/ocelot.Production.json
