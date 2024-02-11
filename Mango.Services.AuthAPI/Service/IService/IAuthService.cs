@@ -1,4 +1,5 @@
-﻿using Mango.Services.AuthAPI.Models.Dto;
+﻿using Mango.Services.AuthAPI.Models;
+using Mango.Services.AuthAPI.Models.Dto;
 
 namespace Mango.Services.AuthAPI.Service.IService
 {
@@ -7,5 +8,6 @@ namespace Mango.Services.AuthAPI.Service.IService
         Task<string> Register(RegisterationRequestDto registerationRequestDto);
         Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
         Task<bool> AssignRole(string email, string roleName);
+        Task<IEnumerable<ApplicationUser>> All();
     }
 }

@@ -3,6 +3,7 @@ using Mango.Services.AuthAPI.Models;
 using Mango.Services.AuthAPI.Models.Dto;
 using Mango.Services.AuthAPI.Service.IService;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mango.Services.AuthAPI.Service
 {
@@ -21,6 +22,11 @@ namespace Mango.Services.AuthAPI.Service
             _userManager = userManager;
             _roleManager = roleManager;
             _jwtTokenGenerator = jwtTokenGenerator;
+        }
+
+        public async Task<IEnumerable<ApplicationUser>> All()
+        {
+            return await _db.ApplicationUsers.ToListAsync();
         }
 
         public async Task<bool> AssignRole(string email, string roleName)

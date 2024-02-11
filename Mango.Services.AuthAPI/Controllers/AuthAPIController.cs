@@ -94,5 +94,25 @@ namespace Mango.Services.AuthAPI.Controllers
                 return BadRequest(_response);
             }
         }
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var users = await _authService.All();
+                if(users != null)
+                {
+                    _response.Result = users;
+                }
+                return Ok(_response);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Error in GetAll users" + ex.Message);
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+                return BadRequest(_response);
+            }
+        }
     }
 }
