@@ -12,6 +12,6 @@ namespace Mango.Services.ShoppingCartAPI.Models
         [NotMapped]
         public double Discount { get; set; }
         [NotMapped]
-        public double CartTotal { get; set; }
+        public decimal CartTotal { get; set; }
     }
 }

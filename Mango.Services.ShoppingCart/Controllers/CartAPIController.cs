@@ -50,7 +50,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
                 foreach(var item in cart.CartDetails)
                 {
                     item.Product = productDtos.FirstOrDefault(u => u.ProductId == item.ProductId);
-                    cart.CartHeader.CartTotal += (item.Count * item.Product.Price);
+                    cart.CartHeader.CartTotal += (decimal)(item.Count * item.Product.Price);
                 }
 
                 if (!string.IsNullOrEmpty(cart.CartHeader.CouponCode))
@@ -58,7 +58,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
                     CouponDto coupon = await _couponService.GetCoupon(cart.CartHeader.CouponCode);
                     if(coupon != null && cart.CartHeader.CartTotal > coupon.MinAmount)
                     {
-                        cart.CartHeader.CartTotal -= coupon.DiscountAmount;
+                        cart.CartHeader.CartTotal -= (decimal)coupon.DiscountAmount;
                         cart.CartHeader.Discount = coupon.DiscountAmount;
                     }
                 }

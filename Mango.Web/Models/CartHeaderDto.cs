@@ -8,7 +8,7 @@ namespace Mango.Web.Models
         public string? UserId { get; set; }
         public string? CouponCode { get; set; }
         public double Discount { get; set; }
-        public double CartTotal { get; set; }
+        public decimal CartTotal { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]
