@@ -86,7 +86,8 @@ namespace Mango.Services.AuthAPI.Service
                 Email = registerationRequestDto.Email,
                 NormalizedEmail = registerationRequestDto.Email.ToUpper(),
                 Name = registerationRequestDto.Name,
-                PhoneNumber = registerationRequestDto.PhoneNumber
+                PhoneNumber = registerationRequestDto.PhoneNumber,
+                Role = "CUSTOMER"
             };
 
             try
