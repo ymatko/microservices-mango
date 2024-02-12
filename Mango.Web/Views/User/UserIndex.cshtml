@@ -1,0 +1,62 @@
+﻿@{
+    var status = Context.Request.Query["role"];
+    var admin = "";
+    var customer = "";
+    var all = "";
+
+    switch (status)
+    {
+        case "admin":
+            admin = "active text-primary bg-white";
+            break;
+        case "customer":
+            customer = "active text-primary bg-white";
+            break;
+        case "all":
+            all = "active text-primary bg-white";
+            break;
+    }
+}
+
+
+
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-white m-lg-0 py-3 d-flex justify-content-between">
+        <div class="row">
+            <h1 class="text-dark text-center">User List</h1>
+        </div>
+        <ul class="list-group list-group-horizontal-sm pt-2">
+            <a style="text-decoration:none" asp-controller="User" asp-action="UserIndex" asp-route-status="admin">
+            <li class="list-group-item @admin">Admin</li>
+            </a>
+            <a style="text-decoration:none" asp-controller="User" asp-action="UserIndex" asp-route-status="customer">
+            <li class="list-group-item @customer">Customer</li>
+            </a>
+            <a style="text-decoration:none" asp-controller="User" asp-action="UserIndex" asp-route-status="all">
+            <li class="list-group-item @all">All</li>
+            </a>
+        </ul>
+    </div>
+    <div class="card-body p-4">
+        <table id="tblData" class="table table-bordered table-striped pt-3" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/user.js"></script>
+}
