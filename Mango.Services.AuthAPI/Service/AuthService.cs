@@ -24,11 +24,6 @@ namespace Mango.Services.AuthAPI.Service
             _jwtTokenGenerator = jwtTokenGenerator;
         }
 
-        public async Task<IEnumerable<ApplicationUser>> All()
-        {
-            return await _db.ApplicationUsers.ToListAsync();
-        }
-
         public async Task<bool> AssignRole(string email, string roleName)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(u => u.Email.ToLower() == email.ToLower());
