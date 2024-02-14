@@ -17,8 +17,17 @@ namespace Mango.Web.Service
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.AuthAPIBase + "/api/auth/GetAll"
-            }, withBearer: false);
+                Url = SD.AuthAPIBase + "/api/user/GetAll"
+            });
+        }
+
+        public async Task<ResponseDto?> GetUserAsync(string userId)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.AuthAPIBase + "/api/user/GetUser/" + userId
+            });
         }
     }
 }

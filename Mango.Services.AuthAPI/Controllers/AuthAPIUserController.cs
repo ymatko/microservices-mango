@@ -24,12 +24,13 @@ namespace Mango.Services.AuthAPI.Controllers
             _response = new();
         }
         [HttpGet("GetAll")]
-        public ResponseDto? GetAll()
+        public ResponseDto GetAll()
         {
             try
             {
-                var users = _userService.All();
-                _response.Result = _mapper.Map<ApplicationUserDto>(users);
+                IEnumerable<ApplicationUserDto> userDto;
+                userDto = _userService.All().GetAwaiter().GetResult();
+                _response.Result = userDto;
             }
             catch (Exception ex)
             {
@@ -40,7 +41,7 @@ namespace Mango.Services.AuthAPI.Controllers
             return _response;
         }
         [HttpGet("GetUser/{userId}")]
-        public ResponseDto? GetUser(string userId)
+        public ResponseDto GetUser(string userId)
         {
             try
             {

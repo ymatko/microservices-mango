@@ -12,10 +12,11 @@ namespace Mango.Services.AuthAPI
             {
                 config.CreateMap<ApplicationUser, ApplicationUserDto>()
                 .ForMember(dest => dest.UserId, u => u.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Name, u => u.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.Name, u => u.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Email, u => u.MapFrom(src => src.Email))
                 .ForMember(dest => dest.PhoneNumber, u => u.MapFrom(src => src.PhoneNumber))
-                .ForMember(dest => dest.Role, u => u.MapFrom(src => src.Role));
+                .ForMember(dest => dest.Role, u => u.MapFrom(src => src.Role))
+                .ReverseMap();
             });
             return mappingConfig;
         }
