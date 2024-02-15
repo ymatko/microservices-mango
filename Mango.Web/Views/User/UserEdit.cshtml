@@ -1,0 +1,62 @@
+﻿@model ApplicationUserDto
+
+<form asp-action="ProductEdit" enctype="multipart/form-data">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-dark text-center">Edit User</h1>
+        <input hidden asp-for="UserId" />
+        <hr />
+        <div class="row">
+            <dic class="col-10">
+                <div class="row">
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Id</label>
+                    </div>
+                    <div class="col-10 pb-3">
+                        <input asp-for="UserId" class="form-control" />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Email</label>
+                    </div>
+                    <div class="col-10 pb-3">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Name</label>
+                    </div>
+                    <div class="col-10 pb-3">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Phone Number</label>
+                    </div>
+                    <div class="col-10 pb-3">
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Role</label>
+                    </div>
+                    <div class="col-12 col-md-6 offset-md-3 pb-2">
+                        <select asp-for="Role" class="form-select" asp-items="@ViewBag.RoleList">
+                            <option disabled selected>--Select Role--</option>
+                        </select>
+                    </div>
+                    <div class="col-5 offset-2">
+                        <a asp-action="UserIndex" class="btn-outline-success btn form-control ">Back to List</a>
+                    </div>
+                    <div class="col-5">
+                        <input type="submit" value="Update" class="btn btn-success form-control" />
+                    </div>
+                </div>
+            </dic>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

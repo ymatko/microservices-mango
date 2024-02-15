@@ -6,6 +6,7 @@ namespace Mango.Web.Service.IService
     {
         Task<ResponseDto?> GetAllAsync();
         Task<ResponseDto?> GetUserAsync(string userId);
+        Task<ResponseDto?> Update(ApplicationUserDto userDto);
 
     }
 }

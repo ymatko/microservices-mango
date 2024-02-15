@@ -29,5 +29,15 @@ namespace Mango.Web.Service
                 Url = SD.AuthAPIBase + "/api/user/GetUser/" + userId
             });
         }
+
+        public async Task<ResponseDto?> Update(ApplicationUserDto userDto)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Data = userDto,
+                Url = SD.AuthAPIBase + "/api/user/UpdateUser"
+            });
+        }
     }
 }
