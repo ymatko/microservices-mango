@@ -1,30 +1,24 @@
-﻿using Mango.Services.AuthAPI.Service.IService;
-using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
 using Mango.Services.AuthAPI.Models.Dto;
-using AutoMapper;
-using Mango.Services.AuthAPI.Data;
-using Mango.Services.AuthAPI.Models;
+using Mango.Services.AuthAPI.Service.IService;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Services.AuthAPI.Controllers
 {
     [Route("api/user")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
+    //[Authorize(Roles = "ADMIN")]
     public class AuthAPIUserController : ControllerBase
     {
         private readonly IUserService _userService;
         protected ResponseDto _response;
         private readonly ILogger<AuthAPIController> _logger;
-        private readonly IMapper _mapper;
-        private readonly AppDbContext _db;
 
-        public AuthAPIUserController(IUserService userService, ILogger<AuthAPIController> logger, IMapper mapper, AppDbContext db)
+        public AuthAPIUserController(IUserService userService, ILogger<AuthAPIController> logger)
         {
             _userService = userService;
             _logger = logger;
-            _mapper = mapper;
-            _db = db;
             _response = new();
         }
         [HttpGet("GetAll")]
@@ -66,10 +60,8 @@ namespace Mango.Services.AuthAPI.Controllers
         {
             try
             {
-                var user = _mapper.Map<ApplicationUser>(userDto);
-                _db.Users.Update(user);
-                _db.SaveChanges();
-                _response.Result = _mapper.Map<ApplicationUserDto>(user);
+                var user = _userService.Update(userDto);
+                _response.Result = user;
             }
             catch (Exception ex)
             {

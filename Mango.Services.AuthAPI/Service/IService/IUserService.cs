@@ -7,5 +7,6 @@ namespace Mango.Services.AuthAPI.Service.IService
     {
         Task<IEnumerable<ApplicationUserDto>> All();
         Task<ApplicationUserDto> GetById(string userId);
+        Task<ApplicationUserDto> Update(ApplicationUserDto userDto);
     }
 }

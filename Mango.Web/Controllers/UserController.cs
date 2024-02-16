@@ -66,6 +66,10 @@ namespace Mango.Web.Controllers
             ViewBag.RoleList = roleList;
             return View(user);
         }
+        public async Task<IActionResult> UserEdit()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> UserEdit(ApplicationUserDto userDto)
         {
@@ -74,7 +78,7 @@ namespace Mango.Web.Controllers
                 ResponseDto? response = await _userService.Update(userDto);
                 if (response != null && response.IsSuccess)
                 {
-                    TempData["success"] = "Product user successfully";
+                    TempData["success"] = "Product user successfully updated";
                     return RedirectToAction(nameof(UserIndex));
                 }
                 else

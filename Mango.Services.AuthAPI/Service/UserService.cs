@@ -39,5 +39,17 @@ namespace Mango.Services.AuthAPI.Service
             var applicationUserDto = _mapper.Map<ApplicationUserDto>(user);
             return applicationUserDto;
         }
+
+        public async Task<ApplicationUserDto> Update(ApplicationUserDto userDto)
+        {
+            ApplicationUser user = _mapper.Map<ApplicationUser>(userDto);
+            if(user == null)
+            {
+                return new ApplicationUserDto();
+            }
+            _db.ApplicationUsers.Update(user);
+            await _db.SaveChangesAsync();
+            return _mapper.Map<ApplicationUserDto>(user);
+        }
     }
 }
