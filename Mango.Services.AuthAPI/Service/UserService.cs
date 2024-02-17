@@ -42,14 +42,19 @@ namespace Mango.Services.AuthAPI.Service
 
         public async Task<ApplicationUserDto> Update(ApplicationUserDto userDto)
         {
-            ApplicationUser user = _mapper.Map<ApplicationUser>(userDto);
-            if(user == null)
+
+            var userFormDb = _db.ApplicationUsers.First(u => u.Id == userDto.UserId);
+            if( userFormDb == null)
             {
                 return new ApplicationUserDto();
             }
-            _db.ApplicationUsers.Update(user);
+            userFormDb.Name = userDto.Name;
+            userFormDb.Email = userDto.Email;
+            userFormDb.PhoneNumber = userDto.PhoneNumber;
+            userFormDb.Role = userDto.Role;
+            _db.ApplicationUsers.Update(userFormDb);
             await _db.SaveChangesAsync();
-            return _mapper.Map<ApplicationUserDto>(user);
+            return _mapper.Map<ApplicationUserDto>(userFormDb);
         }
     }
 }

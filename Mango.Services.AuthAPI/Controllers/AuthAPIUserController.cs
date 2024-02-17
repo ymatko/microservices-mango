@@ -55,12 +55,11 @@ namespace Mango.Services.AuthAPI.Controllers
             return _response;
         }
         [HttpPut("UpdateUser")]
-        [Tags("Updaters")]
-        public ResponseDto UpdateUser([FromBody] ApplicationUserDto userDto)
+        public async Task<ResponseDto> UpdateUserAsync([FromBody] ApplicationUserDto userDto)
         {
             try
             {
-                var user = _userService.Update(userDto);
+                ApplicationUserDto? user = await _userService.Update(userDto);
                 _response.Result = user;
             }
             catch (Exception ex)
