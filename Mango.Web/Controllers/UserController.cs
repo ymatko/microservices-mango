@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 
 namespace Mango.Web.Controllers
 {
-    [Authorize(Roles = "ADMIN")]
     public class UserController : Controller
     {
         private IUserService _userService;
@@ -22,6 +21,7 @@ namespace Mango.Web.Controllers
             return View();
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public IActionResult GetAll(string role)
         {
@@ -39,7 +39,7 @@ namespace Mango.Web.Controllers
                     case "customer":
                         list = list.Where(u => u.Role == SD.RoleCustomer);
                         break;
-                    default: 
+                    default:
                         break;
                 }
             }
@@ -58,17 +58,7 @@ namespace Mango.Web.Controllers
             {
                 user = JsonConvert.DeserializeObject<ApplicationUserDto>(Convert.ToString(response.Result));
             }
-            var roleList = new List<SelectListItem>()
-            {
-                new SelectListItem{Text=SD.RoleAdmin,Value=SD.RoleAdmin},
-                new SelectListItem{Text=SD.RoleCustomer,Value=SD.RoleCustomer}
-            };
-            ViewBag.RoleList = roleList;
             return View(user);
-        }
-        public async Task<IActionResult> UserEdit()
-        {
-            return View();
         }
         [HttpPost]
         public async Task<IActionResult> UserEdit(ApplicationUserDto userDto)
