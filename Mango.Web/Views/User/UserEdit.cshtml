@@ -1,72 +1,62 @@
 ﻿@model ApplicationUserDto
 
-<form method="post">
+<form asp-action="UserEdit" enctype="multipart/form-data">
     <br />
-    <input asp-for="UserId" hidden />
-    <div class="container">
-        <div class="card">
-            <div class="card-header bg-white text-light ml-0">
-                <div class="container row">
-                    <div class="col-12 d-none d-md-block col-md-6 pb-1 text-dark h3">
-                        User Edit
+    <div class="container border p-3">
+        <h1 class="text-dark">Edit User</h1>
+        <input hidden asp-for="UserId" />
+        <hr />
+        <div class="row">
+            <dic class="col-10">
+                <div class="row">
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Id</label>
                     </div>
-                    <div class="col-12 col-md-4 offset-md-2 text-right mt-2">
-                        <a asp-action="UserIndex" class="btn btn-warning form-control btn-sm">Back to Users</a>
+                    <div class="col-10 pb-3">
+                        <input asp-for="UserId" class="form-control" />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
                     </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="container rounded p-2">
-                    <div class="row">
-                        <div class="col-12 col-lg-6 pb-4">
-                            <div class="col-2">
-                                <label class="control-label pt-2" style="font-size:20px;">Id</label>
-                            </div>
-                            <div class="col-10 pb-3">
-                                <input asp-for="UserId" class="form-control" />
-                                <span asp-validation-for="UserId" class="text-danger"></span>
-                            </div>
-                            <div class="col-2">
-                                <label class="control-label pt-2" style="font-size:20px;">Email</label>
-                            </div>
-                            <div class="col-10 pb-3">
-                                <input asp-for="Email" class="form-control" />
-                                <span asp-validation-for="Email" class="text-danger"></span>
-                            </div>
-                            <div class="col-2">
-                                <label class="control-label pt-2" style="font-size:20px;">Name</label>
-                            </div>
-                            <div class="col-10 pb-3">
-                                <input asp-for="Name" class="form-control" />
-                                <span asp-validation-for="Name" class="text-danger"></span>
-                            </div>
-                            <div class="col-2">
-                                <label class="control-label pt-2" style="font-size:20px;">Phone Number</label>
-                            </div>
-                            <div class="col-10 pb-3">
-                                <input asp-for="PhoneNumber" class="form-control" />
-                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                            </div>
-                            <div class="col-2">
-                                <label class="control-label pt-2" style="font-size:20px;">Role</label>
-                            </div>
-                            <div class="col-10 pb-3">
-                                <select asp-for="Role" class="form-select" asp-items="@ViewBag.RoleList">
-                                    <option disabled selected>--Select Role--</option>
-                                </select>
-                            </div>
-                            <div class="col-5 offset-2">
-                                <a asp-action="UserIndex" class="btn-outline-success btn form-control ">Back to List</a>
-                            </div>
-                            <div class="col-5">
-                                <button asp-action="OrderReadyForPickup" asp-route-orderId="@Model.UserId" type="submit" class="btn btn-success form-control my-1">Ready for Pickup</button>
-                            </div>
-                        </div>
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Email</label>
+                    </div>
+                    <div class="col-10 pb-3">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Name</label>
+                    </div>
+                    <div class="col-10 pb-3">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Phone Number</label>
+                    </div>
+                    <div class="col-10 pb-3">
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-2">
+                        <label class="control-label pt-2" style="font-size:20px;">Role</label>
+                    </div>
+                    <div class="col-10 pb-3">
+                        <select asp-for="Role" class="form-select" asp-items="@ViewBag.RoleList">
+                            <option disabled selected>--Select Role--</option>
+                        </select>
+                    </div>
+                    <div class="col-5 offset-2">
+                        <a asp-action="UserIndex" class="btn-outline-success btn form-control ">Back to List</a>
+                    </div>
+                    <div class="col-5">
+                        <input type="submit" value="Update" class="btn btn-success form-control" />
                     </div>
                 </div>
-            </div>
+            </dic>
         </div>
     </div>
 </form>
 
-
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

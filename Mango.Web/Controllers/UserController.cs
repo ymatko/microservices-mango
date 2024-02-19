@@ -49,8 +49,7 @@ namespace Mango.Web.Controllers
             }
             return Json(new { data = list });
         }
-        [HttpGet]
-        public async Task<IActionResult> UserDetail(string userId)
+        public async Task<IActionResult> UserEdit(string userId)
         {
             ApplicationUserDto user = new ApplicationUserDto();
             var response = await _userService.GetUserAsync(userId);
@@ -58,6 +57,12 @@ namespace Mango.Web.Controllers
             {
                 user = JsonConvert.DeserializeObject<ApplicationUserDto>(Convert.ToString(response.Result));
             }
+            var roleList = new List<SelectListItem>()
+            {
+                new SelectListItem{Text=SD.RoleAdmin,Value=SD.RoleAdmin},
+                new SelectListItem{Text=SD.RoleCustomer,Value=SD.RoleCustomer}
+            };
+            ViewBag.RoleList = roleList;
             return View(user);
         }
         [HttpPost]

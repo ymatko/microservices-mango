@@ -34,9 +34,9 @@ namespace Mango.Web.Service
         {
             return await _baseService.SendAsync(new RequestDto()
             {
-                ApiType = SD.ApiType.GET,
+                ApiType = SD.ApiType.PUT,
                 Data = userDto,
-                Url = SD.AuthAPIBase + "/api/user/UpdateUser"
+                Url = SD.AuthAPIBase + "/api/user/UpdateUser",
             });
         }
     }

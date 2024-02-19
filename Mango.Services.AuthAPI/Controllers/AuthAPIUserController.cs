@@ -55,7 +55,7 @@ namespace Mango.Services.AuthAPI.Controllers
             return _response;
         }
         [HttpPut("UpdateUser")]
-        public async Task<ResponseDto> UpdateUserAsync([FromBody] ApplicationUserDto userDto)
+        public async Task<ResponseDto> UpdateUser(ApplicationUserDto userDto)
         {
             try
             {
