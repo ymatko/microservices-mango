@@ -52,6 +52,9 @@ namespace Mango.Services.AuthAPI.Service
             userFormDb.Email = userDto.Email;
             userFormDb.PhoneNumber = userDto.PhoneNumber;
             userFormDb.Role = userDto.Role;
+            userFormDb.UserName = userDto.Email;
+            userFormDb.NormalizedEmail = userDto.Email.ToUpper();
+            userFormDb.NormalizedUserName = userDto.Email.ToUpper();
             _db.ApplicationUsers.Update(userFormDb);
             await _db.SaveChangesAsync();
             return _mapper.Map<ApplicationUserDto>(userFormDb);
